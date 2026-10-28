@@ -1,5 +1,6 @@
 # Segredos: nunca enviar para o Git
 .env
+.streamlit/secrets.toml
 
 # Ambiente virtual e caches do Python
 .venv/

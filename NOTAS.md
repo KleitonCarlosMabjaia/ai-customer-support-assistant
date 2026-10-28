@@ -12,8 +12,10 @@ Resumo do que fui aprendendo ao construir este projeto, etapa a etapa.
 | 2 | Base de conhecimento com perguntas frequentes (FAQ) | ✅ Feita |
 | 3 | "Armazém" de produtos + ferramentas (*tool use*) | ✅ Feita |
 | 4 | Trocar o armazém de faz-de-conta por uma base de dados SQLite | ✅ Feita |
+| 5 | Interface web (Streamlit) que pode ser publicada na internet | ✅ Feita |
 
 Para correr o programa: `python -m support_assistant`
+Para abrir o site no browser: `streamlit run streamlit_app.py`
 Para correr os testes: `python -m pytest`
 
 ---
@@ -254,6 +256,38 @@ O `Catalog` descreve a "forma da ficha": ter `search` e `get_by_sku`. O porteiro
 
 ---
 
+## Etapa 5: a interface web
+
+### Os ficheiros
+
+| Ficheiro | Para que serve |
+|---|---|
+| `support_assistant/web.py` | a página do chat (montra nova, mesma cozinha) |
+| `streamlit_app.py` | a porta de entrada que o Streamlit abre |
+| `tests/test_web.py` | testa a página num "browser de faz de conta" (`AppTest`) |
+
+### A ideia principal: montra nova, mesma cozinha 🏪
+
+O `cli.py` (terminal) e o `web.py` (site) são duas **montras** diferentes. A **cozinha** (assistente, FAQ, SQLite, ferramentas) é exatamente a mesma: não mudámos nenhuma linha do `assistant.py`.
+
+### Como o Streamlit funciona
+
+- Sempre que o visitante faz algo, o Streamlit **corre o ficheiro outra vez, de cima a baixo**. É como um quadro que se apaga e se volta a desenhar.
+- O que tem de sobreviver fica no `st.session_state`: a **mochila** de cada visitante. Cada pessoa tem a sua mochila, por isso as conversas não se misturam.
+- `st.rerun()` = "apaga e volta a desenhar já".
+
+### 🛡️ Proteger a carteira
+
+Num site público, **cada pergunta é paga com a minha chave**. Por isso:
+1. `APP_PASSWORD`: palavra-passe à porta (o porteiro do site);
+2. limite de 20 perguntas por sessão (travão extra, mas recarregar a página dá uma mochila nova);
+3. o mais forte: **limite de gastos** na Claude Console.
+
+- `hmac.compare_digest` compara palavras-passe sempre no mesmo tempo, para não dar pistas a quem tenta adivinhar.
+- Na internet não há `.env`: os segredos colam-se na caixa **Secrets** do Streamlit Cloud.
+
+---
+
 ## 📖 Pequeno dicionário
 
 | Palavra | Significado simples |
@@ -276,3 +310,6 @@ O `Catalog` descreve a "forma da ficha": ter `search` e `get_by_sku`. O porteiro
 | **SQL injection** | um ataque em que texto do cliente se transforma em instruções. Evita-se com `?` |
 | **Protocol** | a "forma da ficha": os métodos que uma peça tem de ter para encaixar |
 | **RAM vs disco** | a mesa que se limpa vs a gaveta que guarda |
+| **Streamlit** | biblioteca que transforma um programa Python numa página web |
+| **session_state** | a mochila de cada visitante: o que se lembra entre cliques |
+| **Deploy** | publicar: pôr o programa a correr num servidor na internet |

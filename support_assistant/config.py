@@ -35,6 +35,8 @@ class Settings:
     max_tokens: int = 16000
     timeout_seconds: float = 120.0
     company_name: str = "TechLoja"
+    # Palavra-passe da interface web ("" = site aberto a todos). Também é secreta.
+    app_password: str = field(default="", repr=False)
 
 
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
@@ -67,6 +69,7 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         max_tokens=int(_parse_positive_number(env, "ASSISTANT_MAX_TOKENS", 16000, int)),
         timeout_seconds=_parse_positive_number(env, "ASSISTANT_TIMEOUT_SECONDS", 120.0, float),
         company_name=env.get("ASSISTANT_COMPANY_NAME", "TechLoja").strip(),
+        app_password=env.get("APP_PASSWORD", "").strip(),
     )
 
 

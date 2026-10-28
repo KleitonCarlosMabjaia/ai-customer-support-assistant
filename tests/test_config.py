@@ -48,6 +48,15 @@ def test_key_is_hidden_from_repr():
     assert FAKE_KEY not in repr(settings)
 
 
+def test_app_password_is_optional_and_hidden():
+    assert load_settings({"ANTHROPIC_API_KEY": FAKE_KEY}).app_password == ""
+
+    settings = load_settings({"ANTHROPIC_API_KEY": FAKE_KEY, "APP_PASSWORD": "segredo123"})
+
+    assert settings.app_password == "segredo123"
+    assert "segredo123" not in repr(settings)
+
+
 def test_invalid_effort_raises():
     with pytest.raises(ConfigurationError, match="ASSISTANT_EFFORT"):
         load_settings({"ANTHROPIC_API_KEY": FAKE_KEY, "ASSISTANT_EFFORT": "turbo"})

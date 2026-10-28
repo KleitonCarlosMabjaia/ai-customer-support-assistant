@@ -1,6 +1,7 @@
 # Aplicação
 anthropic==2.3.0
 python-dotenv==1.2.4
+streamlit==1.66.1
 
 # Testes
 pytest==9.1.1
