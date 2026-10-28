@@ -1,0 +1,14 @@
+# Segredos: nunca enviar para o Git
+.env
+
+# Ambiente virtual e caches do Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Logs
+*.log
+
+# Base de dados local: é criada automaticamente na primeira execução
+data/*.db

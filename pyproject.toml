@@ -1,0 +1,10 @@
+[project]
+name = "ai-customer-support-assistant"
+version = "0.1.0"
+description = "Assistente de apoio ao cliente com a API do Claude"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+# Permite que os testes façam "import support_assistant" a partir da raiz do projeto.
+pythonpath = ["."]
+testpaths = ["tests"]

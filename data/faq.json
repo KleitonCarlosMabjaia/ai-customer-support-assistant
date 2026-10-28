@@ -1,0 +1,38 @@
+[
+  {
+    "pergunta": "Qual é o horário de funcionamento?",
+    "resposta": "A loja física está aberta de segunda a sábado, das 9h às 19h. A loja online funciona 24 horas por dia."
+  },
+  {
+    "pergunta": "Quanto custa o envio?",
+    "resposta": "O envio é grátis em compras acima de 50 €. Abaixo desse valor, custa 4,99 € para Portugal continental."
+  },
+  {
+    "pergunta": "Quanto tempo demora a entrega?",
+    "resposta": "Em Portugal continental, a entrega demora 1 a 3 dias úteis após a confirmação do pagamento."
+  },
+  {
+    "pergunta": "Fazem entregas nos Açores e na Madeira?",
+    "resposta": "Sim. O envio para as ilhas custa 9,99 € (grátis acima de 100 €) e demora 3 a 7 dias úteis."
+  },
+  {
+    "pergunta": "Que métodos de pagamento aceitam?",
+    "resposta": "Aceitamos MB WAY, Multibanco, cartão de crédito ou débito (Visa e Mastercard) e PayPal."
+  },
+  {
+    "pergunta": "Qual é o prazo para devolver um produto?",
+    "resposta": "Tens 30 dias após a receção para devolver um produto, desde que esteja em bom estado e na embalagem original. O reembolso é feito pelo mesmo método de pagamento em até 14 dias."
+  },
+  {
+    "pergunta": "Os produtos têm garantia?",
+    "resposta": "Sim. Todos os produtos novos têm garantia de 3 anos, de acordo com a lei portuguesa."
+  },
+  {
+    "pergunta": "Como posso acompanhar a minha encomenda?",
+    "resposta": "Assim que a encomenda for enviada, recebes um email com o número de seguimento e o link da transportadora."
+  },
+  {
+    "pergunta": "Como posso falar com uma pessoa da equipa de apoio?",
+    "resposta": "Podes enviar email para apoio@techloja.pt ou ligar para o 210 000 000, nos dias úteis, das 9h às 18h."
+  }
+]
