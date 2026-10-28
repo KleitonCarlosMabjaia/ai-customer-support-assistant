@@ -286,6 +286,21 @@ Num site público, **cada pergunta é paga com a minha chave**. Por isso:
 - `hmac.compare_digest` compara palavras-passe sempre no mesmo tempo, para não dar pistas a quem tenta adivinhar.
 - Na internet não há `.env`: os segredos colam-se na caixa **Secrets** do Streamlit Cloud.
 
+### 🎨 Layout e interações
+
+| Coisa nova | Como funciona |
+|---|---|
+| 3 secções (Conversar / Produtos / FAQ) | um `segmented_control` com `key="view"`: a secção escolhida vive na mochila |
+| Sugestões e botão "Perguntar ao assistente" | `on_click` chama `_ask_later`, que corre **antes** de redesenhar: guarda a pergunta e muda para o chat |
+| Efeito "a escrever" | `st.write_stream` + um gerador (`yield`) que entrega a resposta palavra a palavra. A resposta já chegou toda; é só teatro 🎭 (e não custa nada) |
+| 👍/👎 | `st.feedback`; o resultado vai para o log e aparece um `st.toast` a agradecer |
+| Montra | cartões (`st.container(border=True)`), preço em formato PT, etiqueta de stock verde/laranja/vermelha |
+| Animações | CSS: banner com gradiente, mensagens a aparecer, cartões que sobem ao passar o rato. Desligam-se para quem pediu "menos movimento" no sistema |
+| Tema de cores | `.streamlit/config.toml` (sem segredos, pode ir para o Git) |
+
+- `list_all()` foi acrescentado ao `Catalog`, porque a montra precisa de **todos** os produtos e o `search` só devolve 5.
+- **Regra de arrumação:** as contas (preço, filtros, stock) ficam em funções simples, sem Streamlit, por isso testam-se com um `assert` normal.
+
 ---
 
 ## 📖 Pequeno dicionário

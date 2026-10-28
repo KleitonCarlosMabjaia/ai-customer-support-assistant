@@ -49,13 +49,15 @@ def normalize(text: str) -> str:
 class Catalog(Protocol):
     """A "forma da ficha": o que qualquer catálogo de produtos tem de saber fazer.
 
-    Não é preciso herdar desta classe. Qualquer classe com estes dois métodos
+    Não é preciso herdar desta classe. Qualquer classe com estes métodos
     (como ProductCatalog ou SQLiteProductCatalog) serve onde se pede um Catalog.
     """
 
     def search(self, query: str) -> list[Product]: ...
 
     def get_by_sku(self, sku: str) -> Product | None: ...
+
+    def list_all(self) -> list[Product]: ...
 
 
 class ProductCatalog:
@@ -89,3 +91,7 @@ class ProductCatalog:
             if product.sku == sku:
                 return product
         return None
+
+    def list_all(self) -> list[Product]:
+        """Devolve todos os produtos (para a montra do site), sem limite."""
+        return list(self._products)

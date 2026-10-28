@@ -16,13 +16,13 @@ O assistente conversa com o cliente no terminal ou numa **página web** (Streaml
 | | |
 |---|---|
 | 💬 **Conversa com memória** | o histórico é enviado em cada pedido (a API é *stateless*); `/novo` recomeça a conversa |
-| 🌐 **Interface web** | chat em Streamlit, com conversa separada por visitante, palavra-passe opcional e limite de perguntas por sessão |
+| 🌐 **Interface web** | Streamlit com 3 secções (chat, montra de produtos com filtros, FAQ pesquisáveis); sugestões clicáveis, efeito "a escrever", avaliação 👍/👎, conversa descarregável; palavra-passe opcional e limite de perguntas por sessão |
 | 📄 **Base de conhecimento (FAQ)** | `data/faq.json` é validado ao arrancar e incluído no *system prompt*, delimitado por etiquetas `<faq>` |
 | 🛠️ **Tool use** | ferramenta `procurar_produtos` com *schema* estrito; ciclo manual `tool_use` → `tool_result` com limite de rondas |
 | 🗄️ **SQLite** | catálogo persistente, pesquisa sem acentos/maiúsculas, consultas parametrizadas |
 | 🛡️ **Erros tratados** | erros técnicos da API traduzidos para mensagens claras; detalhes técnicos só no log |
 | 🔑 **Chave protegida** | lida do `.env` (fora do Git), nunca aparece em `repr`, logs ou mensagens |
-| ✅ **91 testes** | correm sem internet e sem custos, com um cliente da API simulado |
+| ✅ **108 testes** | correm sem internet e sem custos, com um cliente da API simulado |
 
 ---
 
@@ -133,7 +133,7 @@ Nenhum teste chama a API real: um `MagicMock` substitui o cliente, o que torna o
 - ciclo de ferramentas, incluindo o limite de rondas;
 - validação do `faq.json` (ficheiro em falta, JSON inválido, campos em falta);
 - persistência no SQLite e resistência a *SQL injection*;
-- interface web com o `AppTest` do Streamlit: chat, erros, limite de perguntas e palavra-passe.
+- interface web com o `AppTest` do Streamlit: chat, sugestões, botões da montra, FAQ, erros, limite de perguntas e palavra-passe.
 
 ---
 
@@ -165,6 +165,7 @@ Nenhum teste chama a API real: um `MagicMock` substitui o cliente, o que torna o
 │   ├── products.py            # Product, Catalog (Protocol), catálogo em memória
 │   └── products_db.py         # catálogo SQLite
 ├── tests/                     # testes automáticos (pytest)
+├── .streamlit/config.toml     # tema de cores do site
 ├── streamlit_app.py           # ponto de entrada da interface web
 ├── NOTAS.md                   # notas de estudo do projeto
 ├── .env.example               # modelo de configuração (sem segredos)

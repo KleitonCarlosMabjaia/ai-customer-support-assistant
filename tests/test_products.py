@@ -56,5 +56,11 @@ def test_get_by_sku(catalog):
     assert catalog.get_by_sku("NAO-EXISTE") is None
 
 
+def test_list_all_has_no_result_limit():
+    many = [Product(sku=f"X-{i}", name=f"Cabo USB {i}", price=5.0, stock=1) for i in range(10)]
+
+    assert ProductCatalog(many).list_all() == many
+
+
 def test_default_catalog_has_products():
     assert len(ProductCatalog().search("smartphone")) > 0

@@ -54,6 +54,10 @@ def test_get_by_sku(catalog):
     assert catalog.get_by_sku("NAO-EXISTE") is None
 
 
+def test_list_all_keeps_insertion_order(catalog):
+    assert catalog.list_all() == [LAPTOP, PHONE, MOUSE]
+
+
 def test_data_survives_reopening(catalog, db_path):
     # Abrimos a MESMA gaveta outra vez, sem produtos iniciais:
     # os produtos continuam lá, porque estão guardados no ficheiro.

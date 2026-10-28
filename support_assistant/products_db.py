@@ -85,6 +85,12 @@ class SQLiteProductCatalog:
             ).fetchone()
         return None if row is None else _row_to_product(row)
 
+    def list_all(self) -> list[Product]:
+        """Devolve todos os produtos (para a montra do site), sem limite."""
+        with self._connect() as conn:
+            rows = conn.execute("SELECT sku, nome, preco, stock FROM produtos ORDER BY rowid").fetchall()
+        return [_row_to_product(row) for row in rows]
+
     @contextmanager
     def _connect(self) -> Iterator[sqlite3.Connection]:
         """Abre a gaveta, deixa-nos trabalhar e fecha-a SEMPRE no fim.

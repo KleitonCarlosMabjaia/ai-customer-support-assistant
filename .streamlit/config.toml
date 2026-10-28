@@ -1,0 +1,5 @@
+# Aparência do site (cores, cantos e letra). Não tem segredos: pode ir para o Git.
+[theme]
+primaryColor = "#4F46E5"
+baseRadius = "large"
+font = "sans-serif"
